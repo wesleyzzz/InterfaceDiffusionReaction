@@ -1,6 +1,11 @@
 InterfaceDiffusionReaction
 =====
 
-"Fork InterfaceDiffusionReaction" to create a new MOOSE-based application.
+Steady state
 
-For more information see: [http://mooseframework.org/create-an-app/](http://mooseframework.org/create-an-app/)
+Two Domains
+
+At interface flux match and there is reaction occured, flux = reaction at the interface.
+
+
+
