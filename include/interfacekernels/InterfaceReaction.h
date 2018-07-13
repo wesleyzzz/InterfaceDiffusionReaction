@@ -23,8 +23,8 @@ protected:
   virtual Real computeQpResidual(Moose::DGResidualType type) override;
   virtual Real computeQpJacobian(Moose::DGJacobianType type) override;
 
-  Real _k1;
-  Real _k2;
+  Real _kf;
+  Real _kb;
   const MaterialProperty<Real> & _D;
   const MaterialProperty<Real> & _D_neighbor;
 };

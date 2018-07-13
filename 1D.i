@@ -65,8 +65,8 @@
     boundary = 'master0_interface'
     D = D
     D_neighbor = D
-    k2 = 2 # Backward reaction rate coefficient
-    k1 = 1 # Forward reaction rate coefficient
+    kf = 1 # Forward reaction rate coefficient
+    kb = 2 # Backward reaction rate coefficient
   []
 []
 
