@@ -1,8 +1,10 @@
 [Mesh]
   type = GeneratedMesh
-  dim = 1
+  dim = 2
   nx = 10
   xmax = 2
+  ymax = 0.5
+  ny = 2
 []
 
 [MeshModifiers]

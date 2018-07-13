@@ -57,8 +57,12 @@ InterfaceDiffusion::computeQpJacobian(Moose::DGJacobianType type)
 
   switch (type)
   {
-    case Moose::ElementElement:
-    case Moose::NeighborNeighbor:
+    case Moose::ElementElement: //without this it works so far
+      //jac = _test[_i][_qp] * _D[_qp] * _grad_phi[_j][_qp] * _normals[_qp];
+	  //break;
+
+    case Moose::NeighborNeighbor://without this it works so far
+      //jac = -_test_neighbor[_i][_qp] * _D_neighbor[_qp] * _grad_phi_neighbor[_j][_qp] * _normals[_qp];
       break;
 
     case Moose::NeighborElement:
