@@ -1,7 +1,6 @@
 InterfaceDiffusionReaction
 =====
 
-Steady state
 
 Two Domains
 

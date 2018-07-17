@@ -48,6 +48,22 @@
     D = 2
     block = '1'
   []
+  [diff_u_dt]
+    type = TimeDerivative
+    variable = u
+    block = '0'
+  []
+  [diff_v_dt]
+    type = TimeDerivative
+    variable = v
+    block = '1'
+  []
+  [source_u]
+    type = BodyForce
+    variable = u
+    block = '0'
+  []
+
 []
 
 [InterfaceKernels]
@@ -73,16 +89,14 @@
 
 [BCs]
   [left]
-    type = DirichletBC
+    type = NeumannBC
     variable = u
     boundary = 'left'
-    value = 1
   []
   [right]
-    type = DirichletBC
+    type = NeumannBC
     variable = v
     boundary = 'right'
-    value = 0
   []
 []
 
@@ -114,8 +128,10 @@
 []
 
 [Executioner]
-  type = Steady
-  solve_type = PJFNK
+  type = Transient
+  num_steps = 10
+  dt = 0.1
+  solve_type = NEWTON 
 []
 
 [Outputs]
