@@ -1,4 +1,3 @@
-
 [Mesh]
   type = GeneratedMesh
   dim = 1
@@ -37,15 +36,13 @@
 
 [Kernels]
   [diff_u]
-    type = CoeffParamDiffusion
+    type = MatDiffusion
     variable = u
-    D = 4
     block = '0'
   []
   [diff_v]
-    type = CoeffParamDiffusion
+    type = MatDiffusion
     variable = v
-    D = 2
     block = '1'
   []
 []
