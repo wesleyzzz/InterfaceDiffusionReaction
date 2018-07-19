@@ -42,6 +42,7 @@ inactive = 'VectorPostprocessors'
 []
 
 [Kernels]
+  inactive = 'source_u'
   [diff_u]
     type = MatDiffusion
     variable = u
@@ -119,14 +120,16 @@ inactive = 'VectorPostprocessors'
 
 [BCs]
   [left]
-    type = NeumannBC
+    type = DirichletBC
     variable = u
     boundary = 'left'
+    value = 1
   []
   [right]
-    type = NeumannBC
+    type = DirichletBC
     variable = v
     boundary = 'right'
+    value = 0
   []
 []
 
