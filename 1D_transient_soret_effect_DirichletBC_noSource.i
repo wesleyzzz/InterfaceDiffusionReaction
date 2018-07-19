@@ -1,4 +1,3 @@
-inactive = 'VectorPostprocessors'
 [Mesh]
   type = GeneratedMesh
   dim = 1
@@ -192,15 +191,4 @@ inactive = 'VectorPostprocessors'
 
 [Debug]
   show_var_residual_norms = true
-[]
-
-[VectorPostprocessors]
-  [S_disslove]
-    type = LineValueSampler
-    num_points = 40
-    end_point = '40 0 0'
-    variable = 'u'
-    sort_by = x
-    start_point = '0 0 0'
-  []
 []
