@@ -101,6 +101,19 @@
     prop_names = 'D'
     prop_values = '2'
   []
+
+  [Diffusivity_of_Ce_in_Liquid]
+    # Arrhenius equation,Use the relationship of Ce in liquid Cs, D=exp(-8.765-0.144/(T*k))
+    # function = 'exp(-8.765-0.144/k/T)'
+    type = ParsedMaterial
+    f_name = D_l
+    args = 'T'
+    constant_names = 'k'
+    constant_expressions = '8.61733e-5'
+    function = 2
+    block = '1'
+  []
+
 []
 
 [Preconditioning]
