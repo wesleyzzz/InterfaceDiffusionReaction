@@ -133,7 +133,7 @@
 []
 
 [Materials]
-  inactive = 'Diffusivity_of_Ce_in_Liquid Diffusivity_of_Ce_in_Solid'
+  inactive = 'block0_const_D_s block1_const_D_l'
   [Qheat_liquid]
     type = GenericConstantMaterial
     prop_names = 'Qheat_liquid'
@@ -142,8 +142,10 @@
   []
   [Diffusivity_of_Ce_in_Liquid]
     # Arrhenius equation,Use the relationship of Ce in liquid Cs, D=exp(-8.765-0.144/(T*k)) around2.2e-5
+    #
+    # For testing the code, use exp(600/T),  this value is around 2 with the temp from 853 - 855K.
     type = ParsedMaterial
-    function = exp(-8.765-0.144/(T*k))
+    function = exp(600/T)
     f_name = D_l
     args = 'T'
     constant_names = 'k'
@@ -152,8 +154,10 @@
   []
   [Diffusivity_of_Ce_in_Solid]
     # Arrhenius equation,Use the relationship of Ce in solid fuel, D=3.61e-8*exp(-1.171/(T*k)) around4.45e-15
+    #
+    # For testing the code, use exp(1200/T),  this value is around 4 with the temp from 853 - 855K.
     type = ParsedMaterial
-    function = 3.61e-8*exp(-1.171/(T*k))
+    function = exp(1200/T)
     f_name = D_s
     args = 'T'
     constant_names = 'k'
@@ -201,6 +205,14 @@
   num_steps = 100
   dt = 1
   solve_type = NEWTON
+  end_time = 100
+  inactive = 'Adaptivity'
+  [Adaptivity]
+  []
+  [TimeStepper]
+    type = IterationAdaptiveDT
+    dt = 1
+  []
 []
 
 [Outputs]
