@@ -28,8 +28,5 @@ protected:
   const MaterialProperty<Real> & _D;
   const MaterialProperty<Real> & _D_neighbor;
 };
-  
-  //Real _k1;
-  //Real _k2;
 
 #endif
