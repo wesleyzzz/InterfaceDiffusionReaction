@@ -1,3 +1,29 @@
+# Steady-state test for the InterfaceReaction kernel.
+#
+# Specie M transport from domain 0 (0<x<1) to domain 1 (1<x<2), 
+# u and v are concentrations in domain 0 and domain 1.
+# 
+# Diffusion in both domains can be described by Fick’s law and diffusion 
+# kernel is applied. 
+# 
+# Specie M has different diffusity in different domains, here set as D1=4, D2=2.
+# 
+# Dirichlet boundary conditions are applied, i.e., u(0)=1, v(2)=0 
+#
+# At the interface consider the following
+# (a) Fluxes are matched from both domains (InterfaceDiffusion kernel)
+# (b) First-order reaction is (InterfaceReaction kernel)
+#                     k_f
+#                M(0)  ⇌  M(1)
+#                     k_b
+#
+# The reaction rate is (note that Flux = Reaction rate)
+#                R = k_f*u-k_b*v
+#
+# Analytic solution is
+# u = -0.11*u+1,    0≤u<1
+# v = -0.22*v+0.44, 1<v≤2
+
 [Mesh]
   type = GeneratedMesh
   dim = 1
