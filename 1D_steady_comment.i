@@ -20,7 +20,7 @@
 # The reaction rate is (note that Flux = Reaction rate)
 #                R = k_f*u-k_b*v
 #
-# Analytic solution is
+# Analytical solution is
 # u = -0.11*u+1,    0≤u<1
 # v = -0.22*v+0.44, 1<v≤2
 
