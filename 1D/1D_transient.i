@@ -1,3 +1,8 @@
+# Transient-state test for the InterfaceReaction kernel.
+#
+# Same to steady-state, except the following
+#
+# Natural BCs are applied (i.e. NewmannBC h=0 at left and right)
 
 [Mesh]
   type = GeneratedMesh
@@ -37,15 +42,15 @@
 
 [Kernels]
   [diff_u]
-    type = CoeffParamDiffusion
+    type = MatDiffusion
+    D = '4'
     variable = u
-    D = 4
     block = '0'
   []
   [diff_v]
-    type = CoeffParamDiffusion
+    type = MatDiffusion
+    D = '2'
     variable = v
-    D = 2
     block = '1'
   []
   [diff_u_dt]
@@ -63,7 +68,6 @@
     variable = u
     block = '0'
   []
-
 []
 
 [InterfaceKernels]
@@ -87,25 +91,7 @@
   []
 []
 
-[BCs]
-  [left]
-    type = NeumannBC
-    variable = u
-    boundary = 'left'
-  []
-  [right]
-    type = NeumannBC
-    variable = v
-    boundary = 'right'
-  []
-[]
-
 [Materials]
-  [stateful]
-    type = StatefulMaterial
-    initial_diffusivity = 1
-    boundary = 'master0_interface'
-  []
   [block0]
     type = GenericConstantMaterial
     block = '0'
@@ -131,7 +117,7 @@
   type = Transient
   num_steps = 10
   dt = 0.1
-  solve_type = NEWTON 
+  solve_type = NEWTON
 []
 
 [Outputs]
