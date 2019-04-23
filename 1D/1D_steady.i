@@ -13,9 +13,9 @@
 # At the interface consider the following
 # (a) Fluxes are matched from both domains (InterfaceDiffusion kernel)
 # (b) First-order reaction is (InterfaceReaction kernel)
-#      kf
+# kf
 # M(0)  =  M(1)
-#      kb
+# kb
 #
 # The reaction rate is (note that Flux = Reaction rate)
 # R = kf*u - kb*v
@@ -23,7 +23,6 @@
 # Analytical solution is
 # u = -0.11*u+1,    0<=u<=1
 # v = -0.22*v+0.44, 1<v<=2
-
 [Mesh]
   type = GeneratedMesh
   dim = 1
@@ -155,6 +154,18 @@
   []
   [elemental_error_v]
     type = ElementL2Error
+    function = -0.22*x+0.44
+    variable = 'v'
+    block = '1'
+  []
+  [nodal_u]
+    type = NodalL2Error
+    function = -0.11*x+1
+    variable = 'u'
+    block = '0'
+  []
+  [nodal_v]
+    type = NodalL2Error
     function = -0.22*x+0.44
     variable = 'v'
     block = '1'
