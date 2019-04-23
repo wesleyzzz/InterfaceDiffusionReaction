@@ -35,15 +35,15 @@ InterfaceReaction::computeQpResidual(Moose::DGResidualType type)
   switch (type)
   {
     
-    //Move all the terms to the LHS to get residual 
-    //  R = flux - kf*u + kb*v
-    //Weak form for master domain is: -(test, flux - kf*u + kb*v)
-    //Weak form for slave domain is: (test, flux - kf*u + kb*v)
+    //Move all the terms to the LHS to get residual, for master domain
+    //  R = flux - kf*u + kb*v = (-D*grad(u))_from_neighbor - kf*u + kb*v
+    //Weak form for master domain is: -(test, n*(D*grad(u))_from_neighbor + kf*u - kb*v)
 
     case Moose::Element:
 	  r = -_test[_i][_qp] * (_D_neighbor[_qp] * _grad_neighbor_value[_qp] * _normals[_qp] + _kf * _u[_qp] - _kb * _neighbor_value[_qp]);
       break;
 
+    //Similarly, weak form for slave domain is: (test, n*(D*grad(u))_from_master + kf*u - kb*v), flip the sign because the direction is opposite.
     case Moose::Neighbor:
       r = _test_neighbor[_i][_qp] * (_D[_qp] * _grad_u[_qp] * _normals[_qp] + _kf * _u[_qp]- _kb * _neighbor_value[_qp]);
       break;
