@@ -1,0 +1,8 @@
+Jacobian test report using analyzejacobian.py
+
+
+Kernel for variable 'u':
+  (0,0) On-diagonal Jacobian is slightly off (by 0.174563 %)
+
+Kernel for variable 'v':
+  (1,1) On-diagonal Jacobian is slightly off (by 0.649123 %)
