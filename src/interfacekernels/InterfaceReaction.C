@@ -62,7 +62,11 @@ InterfaceReaction::computeQpJacobian(Moose::DGJacobianType type)
   switch (type)
   {
     case Moose::ElementElement:
+      jac = -_test[_i][_qp] * _kf * _phi[_j][_qp];
+      break;
+
     case Moose::NeighborNeighbor:
+      jac = _test_neighbor[_i][_qp] * - _kb * _phi_neighbor[_j][_qp];
       break;
 
     case Moose::NeighborElement:
@@ -71,7 +75,6 @@ InterfaceReaction::computeQpJacobian(Moose::DGJacobianType type)
 
     case Moose::ElementNeighbor:
       jac = -_test[_i][_qp] * (_D_neighbor[_qp] * _grad_phi_neighbor[_j][_qp] * _normals[_qp] - _kb * _phi_neighbor[_j][_qp]);
-
       break;
   }
 
