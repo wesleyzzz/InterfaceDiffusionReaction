@@ -80,7 +80,7 @@
     D_neighbor = D
   []
   [interface_reaction]
-    type = InterfaceReaction
+    type = InterfaceReactionFlux
     variable = u
     neighbor_var = 'v'
     boundary = 'master0_interface'

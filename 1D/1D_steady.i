@@ -1,7 +1,7 @@
 # Steady-state test for the InterfaceReaction kernel.
 #
-# Specie M transport from domain 0 (0<=x<=1) to domain 1 (1<x<=2),
-# u and v are concentrations in domain 0 and domain 1.
+# Specie M transport from domain 1 (0<=x<=1) to domain 2 (1<x<=2),
+# u and v are concentrations in domain 1 and domain 2.
 #
 # Diffusion in both domains can be described by Ficks law and diffusion
 # kernel is applied.
@@ -12,17 +12,15 @@
 #
 # At the interface consider the following
 # (a) Fluxes are matched from both domains (InterfaceDiffusion kernel)
-# (b) First-order reaction is (InterfaceReaction kernel)
-# kf
-# M(0)  =  M(1)
-# kb
+# (b) First-order reaction is taken place (InterfaceReaction kernel)
 #
-# The reaction rate is (note that Flux = Reaction rate)
-# R = kf*u - kb*v
+# ReactionRate = kf*u - kb*v
+#
+# Set the Flux = Reaction rate
 #
 # Analytical solution is
-# u = -0.11*u+1,    0<=u<=1
-# v = -0.22*v+0.44, 1<v<=2
+# u = -(1/9)*u+1,    0<=u<=1
+# v = -(2/9)*v+4/9, 1<v<=2
 [Mesh]
   type = GeneratedMesh
   dim = 1
@@ -81,8 +79,8 @@
     D = D
     D_neighbor = D
   []
-  [interface_reaction]
-    type = InterfaceReaction
+  [interface_reaction_flux]
+    type = InterfaceReactionFlux
     variable = u
     neighbor_var = 'v'
     boundary = 'master0_interface'
@@ -148,25 +146,25 @@
 [Postprocessors]
   [elemental_error_u]
     type = ElementL2Error
-    function = -0.11*x+1
+    function = -1/9*x+1
     variable = 'u'
     block = '0'
   []
   [elemental_error_v]
     type = ElementL2Error
-    function = -0.22*x+0.44
+    function = -2/9*x+4/9
     variable = 'v'
     block = '1'
   []
   [nodal_u]
     type = NodalL2Error
-    function = -0.11*x+1
+    function = -1/9*x+1
     variable = 'u'
     block = '0'
   []
   [nodal_v]
     type = NodalL2Error
-    function = -0.22*x+0.44
+    function = -2/9*x+0.44
     variable = 'v'
     block = '1'
   []

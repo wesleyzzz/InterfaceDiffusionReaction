@@ -1,11 +1,11 @@
 
-#include "InterfaceReaction.h"
+#include "InterfaceReactionFlux.h"
 
-registerMooseObject("InterfaceDiffusionReactionApp", InterfaceReaction);
+registerMooseObject("InterfaceDiffusionReactionApp", InterfaceReactionFlux);
 
 template <>
 InputParameters
-validParams<InterfaceReaction>()
+validParams<InterfaceReactionFlux>()
 {
   InputParameters params = validParams<InterfaceKernel>(); 
   params.addParam<MaterialPropertyName>("D", "D", "The diffusion coefficient.");
@@ -18,7 +18,7 @@ validParams<InterfaceReaction>()
   return params;
 }
 
-InterfaceReaction::InterfaceReaction(const InputParameters & parameters)
+InterfaceReactionFlux::InterfaceReactionFlux(const InputParameters & parameters)
   : InterfaceKernel(parameters), 
     _kf(getParam<Real>("kf")),
     _kb(getParam<Real>("kb")),
@@ -28,7 +28,7 @@ InterfaceReaction::InterfaceReaction(const InputParameters & parameters)
 }
 
 Real
-InterfaceReaction::computeQpResidual(Moose::DGResidualType type) 
+InterfaceReactionFlux::computeQpResidual(Moose::DGResidualType type) 
 {
   Real r = 0;
 
@@ -55,7 +55,7 @@ InterfaceReaction::computeQpResidual(Moose::DGResidualType type)
 }
 
 Real
-InterfaceReaction::computeQpJacobian(Moose::DGJacobianType type)
+InterfaceReactionFlux::computeQpJacobian(Moose::DGJacobianType type)
 {
   Real jac = 0;
 

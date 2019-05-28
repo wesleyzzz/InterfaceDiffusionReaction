@@ -1,23 +1,23 @@
 //* This file is revised from interfacediffusion
 
-#ifndef INTERFACEREACTION_H
-#define INTERFACEREACTION_H
+#ifndef INTERFACEREACTIONFLUX_H
+#define INTERFACEREACTIONFLUX_H
 
 #include "InterfaceKernel.h"
 
 // Forward Declarations
-class InterfaceReaction;
+class InterfaceReactionFlux;
 
 template <>
-InputParameters validParams<InterfaceReaction>();
+InputParameters validParams<InterfaceReactionFlux>();
 
 /**
  * DG kernel for interfacing reaction between two variables on adjacent blocks
  */
-class InterfaceReaction : public InterfaceKernel
+class InterfaceReactionFlux : public InterfaceKernel
 {
 public:
-  InterfaceReaction(const InputParameters & parameters);
+  InterfaceReactionFlux(const InputParameters & parameters);
 
 protected:
   virtual Real computeQpResidual(Moose::DGResidualType type) override;
